@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.reflektive.com/schemas/feedback-v1",
+  "title": "Real-time Feedback (v1)",
+  "description": "A real-time feedback record with a single sender and single recipient.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "A unique identifier associated with this feedback.",
+      "example": "e8678ff9-3ae4-4b2b-b7af-f7240155f753"
+    },
+    "sender": {
+      "$ref": "employee.json",
+      "description": "The employee who gave the feedback."
+    },
+    "recipient": {
+      "$ref": "employee.json",
+      "description": "The employee who received the feedback."
+    },
+    "content": {
+      "type": "string",
+      "description": "The publicly visible content of the feedback.",
+      "example": "Most impressive."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the feedback was created and sent.",
+      "example": "2016-10-31T23:43:20Z"
+    }
+  },
+  "required": ["uuid", "sender", "recipient", "content", "created_at"]
+}

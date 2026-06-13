@@ -1,0 +1,92 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "reflektive": "https://api.reflektive.com/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Employee": "reflektive:Employee",
+    "Feedback": "reflektive:Feedback",
+    "Task": "reflektive:Task",
+    "Report": "reflektive:Report",
+
+    "uuid": {
+      "@id": "reflektive:uuid",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "photo": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "sender": {
+      "@id": "reflektive:sender",
+      "@type": "@id"
+    },
+    "recipient": {
+      "@id": "reflektive:recipient",
+      "@type": "@id"
+    },
+    "recipients": {
+      "@id": "reflektive:recipients",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "content": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "status": {
+      "@id": "reflektive:status",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "reflektive:metadata",
+      "@type": "@json"
+    },
+    "link": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "task_uuid": {
+      "@id": "reflektive:taskUuid",
+      "@type": "xsd:string"
+    },
+    "links": {
+      "@id": "reflektive:links"
+    },
+    "self": {
+      "@id": "reflektive:selfLink",
+      "@type": "@id"
+    },
+    "next": {
+      "@id": "reflektive:nextLink",
+      "@type": "@id"
+    },
+    "last": {
+      "@id": "reflektive:lastLink",
+      "@type": "@id"
+    },
+    "data": {
+      "@id": "reflektive:data"
+    },
+
+    "Person": "schema:Person",
+    "identifier": "schema:identifier",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    }
+  }
+}

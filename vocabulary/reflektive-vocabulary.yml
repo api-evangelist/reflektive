@@ -1,0 +1,77 @@
+vocabulary:
+  - term: Employee
+    definition: >-
+      A user working for a Reflektive company. Identified by a UUID and
+      associated with an email address, display name, and optional photo URL.
+    properties:
+      - uuid
+      - email
+      - name
+      - photo
+
+  - term: Real-time Feedback
+    definition: >-
+      An instance of feedback given from a sender (Employee) to one or more
+      recipients (Employees), containing publicly visible text content created
+      by the sender. The v1 API supports a single recipient; the v2 API
+      supports multiple recipients for Team Recognition.
+    properties:
+      - uuid
+      - sender
+      - recipient
+      - recipients
+      - content
+      - created_at
+
+  - term: Team Recognition
+    definition: >-
+      A v2 feature of Real-time Feedback that allows a single sender to
+      recognize multiple recipients simultaneously. Represented by an array
+      of Employee objects in the "recipients" field.
+
+  - term: Task
+    definition: >-
+      An asynchronous job object used to track the status of long-running
+      operations such as report generation. A task transitions through
+      "pending", "failed", and "completed" states. When completed, the task
+      metadata contains a temporary download link for the generated artifact.
+    properties:
+      - uuid
+      - status
+      - metadata
+
+  - term: Report
+    definition: >-
+      A data export generated asynchronously by the Reflektive API. Reports
+      are initiated via POST requests that return a task UUID. Consumers poll
+      the task endpoint until the status reaches "completed" and retrieve the
+      report from the metadata download link. The link expires after 15
+      minutes by default.
+    types:
+      - Calibrations Report
+
+  - term: Calibrations Report
+    definition: >-
+      A report type (report_type=calibrations) associated with a specific
+      review cycle. Generated via POST /v1/reports/reviews with the
+      cycle_uuid of the target review cycle.
+
+  - term: Review Cycle
+    definition: >-
+      A defined period during which performance reviews are conducted within
+      a Reflektive company. Identified by a UUID and referenced as cycle_uuid
+      when generating review reports.
+
+  - term: Token Authentication
+    definition: >-
+      The authentication mechanism used by the Reflektive API. A company-level
+      secret API key is passed in the HTTP Authorization header in the format:
+      "Authorization: Token token=<api_key>". API keys are issued by
+      Reflektive support upon request.
+
+  - term: Pagination
+    definition: >-
+      The Reflektive API returns paginated results with 200 records per page.
+      When more records exist, the response "links" object contains "next" and
+      "last" URLs. Clients use the "page" query parameter to navigate between
+      pages.

@@ -53,6 +53,20 @@ apis:
         url: https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
       - type: OpenAPI
         url: https://docs.api.reflektive.com/
+      - type: OpenAPI
+        url: openapi/reflektive-reflektive-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/employee.json
+      - type: JSONSchema
+        url: json-schema/feedback-v1.json
+      - type: JSONSchema
+        url: json-schema/feedback-v2.json
+      - type: JSONSchema
+        url: json-schema/task.json
+      - type: JSONLDContext
+        url: json-ld/reflektive-context.jsonld
+      - type: Vocabulary
+        url: vocabulary/reflektive-vocabulary.yml
 
 common:
   - type: Website

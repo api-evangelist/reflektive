@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.reflektive.com/schemas/task",
+  "title": "Task",
+  "description": "Tracks the status of an asynchronous job such as report generation. When a report completes, the metadata field contains a temporary download link (expires after 15 minutes by default).",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "A unique identifier for this task.",
+      "example": "c4ff9ae5-558d-400c-a768-ad132a3e4c6c"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the task.",
+      "enum": ["pending", "failed", "completed"],
+      "example": "pending"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "A JSON object containing metadata about the task. For completed report tasks this includes a 'link' property with a temporary download URL.",
+      "additionalProperties": true,
+      "properties": {
+        "link": {
+          "type": "string",
+          "format": "uri",
+          "description": "A temporary download link for the completed report. Expires after 15 minutes by default.",
+          "example": "http://www.some_download_link.com"
+        }
+      }
+    }
+  },
+  "required": ["uuid", "status", "metadata"]
+}

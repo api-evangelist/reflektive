@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.reflektive.com/schemas/employee",
+  "title": "Employee",
+  "description": "Represents a user working for a Reflektive company.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "A unique identifier associated with this employee.",
+      "example": "04b09952-6b79-454e-8306-9c7f015267b5"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address of the employee.",
+      "example": "darth.vader@example.com"
+    },
+    "name": {
+      "type": "string",
+      "description": "The employee's full name, for example: John Smith.",
+      "example": "Darth Vader"
+    },
+    "photo": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "A URL pointing to a photograph of the employee (if one is available).",
+      "example": "https://www.example.com/darth.vader.jpg"
+    }
+  },
+  "required": ["uuid", "email", "name"]
+}
