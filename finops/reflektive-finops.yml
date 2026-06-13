@@ -1,0 +1,59 @@
+specificationVersion: "1.0"
+id: reflektive-finops
+name: Reflektive FinOps
+description: >-
+  Reflektive is priced as an enterprise SaaS subscription with custom,
+  quote-based pricing negotiated directly with the vendor. There are no
+  metered usage charges, overage fees, or pay-as-you-go tiers. Cost is
+  driven primarily by employee headcount and contracted feature set.
+  As Reflektive is now part of PeopleFluent under Learning Technologies Group,
+  procurement may be bundled with other PeopleFluent products.
+url: https://www.reflektive.com/
+framework: FinOps Framework 1.0
+alignment: FOCUS
+
+dimensions:
+  - name: Cost Model
+    value: Subscription (flat-rate or per-employee)
+    notes: >-
+      Pricing is not publicly listed. Common market references indicate
+      approximately $6 per employee per month or $7,500/month flat rate.
+      Actual pricing requires a vendor quote and is typically annual.
+
+  - name: Billing Granularity
+    value: Annual subscription
+    notes: >-
+      Reflektive contracts are typically annual. Monthly billing may be
+      available by arrangement but is not the default commercial model.
+
+  - name: Usage-Based Costs
+    value: None documented
+    notes: >-
+      No metered API call charges, per-report fees, or overage costs are
+      documented. API access appears to be included within the subscription
+      entitlement. Rate limits and pagination controls serve throughput
+      management rather than billing triggers.
+
+  - name: Cost Allocation
+    value: Single company-level subscription
+    notes: >-
+      The Reflektive API uses a company-level API key, meaning all API usage
+      is attributed to one organizational account. There is no per-department
+      or per-user cost allocation mechanism exposed via the API.
+
+  - name: Optimization Opportunities
+    value: Headcount-based negotiation
+    notes: >-
+      As cost scales with employee count, cost optimization primarily involves
+      negotiating per-seat rates during contract renewal, right-sizing the
+      contracted headcount, and auditing active versus inactive user licenses.
+      API consumers should use pagination efficiently to avoid unnecessary
+      redundant calls.
+
+  - name: Vendor Risk
+    value: Medium
+    notes: >-
+      Reflektive has been acquired by PeopleFluent (LTG). Platform continuity
+      and API roadmap are subject to PeopleFluent product strategy. Organizations
+      should monitor for product deprecation announcements and ensure API
+      integrations remain tested against current endpoint availability.

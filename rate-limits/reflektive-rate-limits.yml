@@ -1,0 +1,52 @@
+specificationVersion: "0.1"
+id: reflektive-rate-limits
+name: Reflektive API Rate Limits
+description: >-
+  Reflektive does not publish explicit rate limit thresholds in its public API
+  documentation. The API uses pagination to manage response sizes, defaulting
+  to 200 results per query across list endpoints. Report generation is handled
+  asynchronously via a Task resource to avoid blocking large data exports.
+  Public download links for generated reports expire after 15 minutes.
+  Organizations experiencing rate limit concerns should contact Reflektive
+  support for guidance on acceptable usage patterns.
+url: https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
+limits:
+  - name: Default Pagination Limit
+    description: >-
+      List endpoints such as real-time feedback return a maximum of 200 results
+      per request by default. Use the page query parameter to paginate through
+      additional results.
+    scope: per-request
+    value: 200
+    unit: records
+    endpoints:
+      - GET https://api.reflektive.com/v1/real-time-feedback
+      - GET https://api.reflektive.com/v2/real-time-feedback
+
+  - name: Report Download Link Expiry
+    description: >-
+      Public download links returned by the reports endpoint expire after
+      15 minutes. Consumers must download report data within this window or
+      regenerate the report.
+    scope: per-report
+    value: 15
+    unit: minutes
+    endpoints:
+      - POST https://api.reflektive.com/v1/reports/reviews
+
+  - name: Asynchronous Report Processing
+    description: >-
+      Report generation is executed asynchronously. The POST to the reports
+      endpoint returns a Task UUID which must be polled via the task endpoint
+      to determine completion status (pending, completed, failed). No
+      synchronous bulk data export is available.
+    scope: per-request
+    type: async
+    endpoints:
+      - GET https://api.reflektive.com/v1/task/:uuid
+
+notes: >-
+  Reflektive does not explicitly document request-per-minute or
+  request-per-day rate limits. API keys are company-scoped and managed by
+  Reflektive support. For high-volume integration requirements, contact
+  support@reflektive.com.

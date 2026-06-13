@@ -1,0 +1,43 @@
+specificationVersion: "0.1"
+id: reflektive-plans-pricing
+name: Reflektive Plans and Pricing
+description: >-
+  Reflektive is a performance management platform offered as a SaaS subscription.
+  Pricing is enterprise-focused and quote-based, typically starting around
+  $6 per employee per month or $7,500 per month as a flat rate depending on
+  company size and configuration. There is no self-serve free tier or public
+  trial. Organizations must contact Reflektive sales for a customized quote.
+  The API is available to customers with engineering capabilities; developer
+  support is not provided directly by Reflektive.
+url: https://www.reflektive.com/
+plans:
+  - name: Enterprise
+    description: >-
+      Full-featured enterprise performance management subscription including
+      performance reviews, real-time feedback, goal tracking, engagement surveys,
+      and people analytics. API access is included for organizations with
+      engineering resources. Pricing is custom and quote-based.
+    url: https://www.reflektive.com/
+    pricingModel: subscription
+    billingCycle: annual
+    price:
+      value: 6.00
+      currency: USD
+      unit: per-employee-per-month
+    features:
+      - Performance reviews (360-degree, self, peer)
+      - Real-time feedback and recognition
+      - Goal management and OKR tracking
+      - Engagement surveys
+      - People analytics and talent calibration
+      - HRIS integrations (Workday, ADP, BambooHR, Namely)
+      - SSO (Okta, OneLogin, OAuth)
+      - Email and chat integrations (Slack, Gmail, MS Teams)
+      - REST API access
+      - 24/5 global customer support
+      - Sandbox environment for API testing (on request)
+    limitations:
+      - No free tier or self-serve trial
+      - No API developer support provided
+      - API key must be requested via support@reflektive.com
+      - Quote-based pricing requires sales engagement

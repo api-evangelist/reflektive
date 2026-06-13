@@ -1,0 +1,83 @@
+aid: reflektive
+name: Reflektive
+description: >-
+  Reflektive is a cloud-based performance management platform that enables
+  organizations to scale constructive, ongoing conversations across their
+  workforce. The platform provides a REST API for managing performance reviews,
+  real-time feedback, goal tracking, and engagement survey data, allowing
+  engineering teams to integrate Reflektive data into their own systems and
+  workflows. The API supports GET, POST, PATCH, and DELETE operations against
+  company data using token-based authentication, with versioned endpoints
+  covering real-time feedback, tasks, reports, goals, and review cycles. Hosted
+  API reference documentation is available via SwaggerHub and a dedicated
+  developer portal, enabling developers to explore and test endpoints
+  interactively. Reflektive is now part of PeopleFluent, a learning and talent
+  management suite operating under the Learning Technologies Group.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/reflektive/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+tags:
+  - Performance Management
+  - HR
+  - Employee Feedback
+  - Goal Tracking
+  - Engagement Surveys
+  - Reviews
+  - People Analytics
+  - REST API
+
+apis:
+  - aid: reflektive:reflektive-api
+    name: Reflektive API
+    description: >-
+      The Reflektive REST API provides programmatic access to performance
+      management data including real-time feedback, performance reviews, goal
+      management, engagement surveys, and asynchronous report generation.
+      Authentication uses a company-level token passed as an HTTP Authorization
+      header. The API is versioned (v1 and v2), with v2 supporting multi-recipient
+      team recognition in addition to the core v1 resource set.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.api.reflektive.com/
+    baseURL: https://api.reflektive.com
+    tags:
+      - Performance Reviews
+      - Real-Time Feedback
+      - Goal Management
+      - Engagement Surveys
+      - People Analytics
+    properties:
+      - type: Documentation
+        url: https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
+      - type: OpenAPI
+        url: https://docs.api.reflektive.com/
+
+common:
+  - type: Website
+    url: https://www.reflektive.com/
+  - type: Documentation
+    url: https://support.reflektive.com/hc/en-us/articles/19691532062483-Technical-API-Documentation
+  - type: GitHubOrg
+    url: https://github.com/reflektive
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/reflektive
+  - type: Blog
+    url: https://www.peoplefluent.com/blog/
+  - type: Pricing
+    url: https://www.capterra.com/p/158192/Reflektive/
+  - type: StatusPage
+    url: https://support.reflektive.com/
+  - type: X
+    url: https://x.com/reflektive
+  - type: Plans
+    url: plans/reflektive-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/reflektive-rate-limits.yml
+  - type: FinOps
+    url: finops/reflektive-finops.yml
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
