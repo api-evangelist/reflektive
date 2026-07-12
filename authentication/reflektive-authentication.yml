@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/reflektive-reflektive-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: tokenAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Token-based authentication. Pass the header as: `Authorization: Token token=<your_api_key>`.
+    Contact support@reflektive.com to obtain an API key.'
+  sources:
+  - openapi/reflektive-reflektive-api-openapi.yml

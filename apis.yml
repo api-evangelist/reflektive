@@ -69,6 +69,12 @@ apis:
         url: vocabulary/reflektive-vocabulary.yml
 
 common:
+  - type: TrustCenter
+    url: security/reflektive-trust-center.yml
+  - type: DomainSecurity
+    url: security/reflektive-domain-security.yml
+  - type: Authentication
+    url: authentication/reflektive-authentication.yml
   - type: Website
     url: https://www.reflektive.com/
   - type: Documentation
