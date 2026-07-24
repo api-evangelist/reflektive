@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Reports API
+  description: The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.
+  version: '2.0'
+  contact:
+    email: support@reflektive.com
+  x-api-id: reflektive:reflektive-api
+  x-audience: external-public
+servers:
+- url: https://api.reflektive.com
+  description: Reflektive Production API
+security:
+- tokenAuth: []
+tags:
+- name: Reports
+  description: Report generation endpoints that kick off asynchronous jobs and return a task UUID for status polling.
+paths:
+  /v1/reports/reviews:
+    post:
+      operationId: generateReviewsReport
+      summary: Generate a calibrations report
+      description: Kicks off an asynchronous report generation job and returns the UUID of a Task object that can be polled for completion. When the report is ready, the task metadata will contain a temporary download link.
+      tags:
+      - Reports
+      parameters:
+      - name: report_type
+        in: query
+        required: true
+        description: The type of report to generate.
+        schema:
+          type: string
+          enum:
+          - calibrations
+          example: calibrations
+      - name: cycle_uuid
+        in: query
+        required: true
+        description: The UUID of the review cycle to generate the report for.
+        schema:
+          type: string
+          format: uuid
+          example: eadf6d0c-00e3-45ce-8332-1673226f0321
+      responses:
+        '200':
+          description: Report generation job accepted. Returns the task UUID to poll for completion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportTaskResponse'
+              example:
+                data:
+                  task_uuid: 194b434f-ebbb-4aae-a975-34681d13c1b3
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  schemas:
+    ReportTaskResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            task_uuid:
+              type: string
+              format: uuid
+              description: The UUID of the Task created for this report generation job. Use GET /v1/task/{uuid} to poll for completion.
+              example: 194b434f-ebbb-4aae-a975-34681d13c1b3
+          required:
+          - task_uuid
+      required:
+      - data
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
+  responses:
+    Unauthorized:
+      description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: You do not have permission to view the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token-based authentication. Pass the header as: `Authorization: Token token=<your_api_key>`. Contact support@reflektive.com to obtain an API key.'

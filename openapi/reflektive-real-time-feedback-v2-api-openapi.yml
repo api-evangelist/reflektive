@@ -1,0 +1,205 @@
+openapi: 3.0.3
+info:
+  title: Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Real-time Feedback (v2) API
+  description: The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.
+  version: '2.0'
+  contact:
+    email: support@reflektive.com
+  x-api-id: reflektive:reflektive-api
+  x-audience: external-public
+servers:
+- url: https://api.reflektive.com
+  description: Reflektive Production API
+security:
+- tokenAuth: []
+tags:
+- name: Real-time Feedback (v2)
+  description: V2 endpoint for real-time feedback with support for Team Recognition (multiple recipients).
+paths:
+  /v2/real-time-feedback:
+    get:
+      operationId: listV2RealTimeFeedback
+      summary: List real-time feedback (v2)
+      description: Returns a paginated list of all public, positive real-time feedback records using the v2 schema. The v2 endpoint adds support for Team Recognition — feedback sent to multiple recipients simultaneously. By default 200 results are returned per query.
+      tags:
+      - Real-time Feedback (v2)
+      parameters:
+      - name: created_before
+        in: query
+        description: A UNIX timestamp representing the oldest time a feedback was created. Defaults to the time the request was issued.
+        required: false
+        schema:
+          type: integer
+          format: int64
+          example: 1477877614
+      - name: created_after
+        in: query
+        description: A UNIX timestamp representing the most recent time a feedback was created. Defaults to 1 day prior to the time the request was issued.
+        required: false
+        schema:
+          type: integer
+          format: int64
+          example: 1477877614
+      - name: page
+        in: query
+        description: An offset for the feedback results. The endpoint returns 200 results per query.
+        required: false
+        schema:
+          type: integer
+          default: 1
+          example: 1
+      responses:
+        '200':
+          description: Paginated list of real-time feedback records (v2, multi-recipient).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V2FeedbackListResponse'
+              example:
+                links:
+                  self: /v2/real-time-feedback?created_after=1477877614
+                  next: /v2/real-time-feedback?created_after=1477877614?page=2
+                  last: /v2/real-time-feedback?created_after=1477877614?page=5
+                data:
+                - uuid: e8678ff9-3ae4-4b2b-b7af-f7240155f753
+                  sender:
+                    uuid: 04b09952-6b79-454e-8306-9c7f015267b5
+                    email: darth.vader@example.com
+                    name: Darth Vader
+                    photo: https://www.example.com/darth.vader.jpg
+                  recipients:
+                  - uuid: addd9666-788a-4eb6-82a2-225a7600e4c9
+                    email: luke.skywalker@example.com
+                    name: Luke Skywalker
+                    photo: https://www.example.com/luke.skywalker.jpg
+                  content: Most impressive.
+                  created_at: '2016-10-31T23:43:20Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: You do not have permission to view the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
+    V2Feedback:
+      type: object
+      description: A real-time feedback record (v2) supporting Team Recognition — one sender and one or more recipients.
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: A unique identifier associated with this feedback.
+          example: e8678ff9-3ae4-4b2b-b7af-f7240155f753
+        sender:
+          $ref: '#/components/schemas/Employee'
+        recipients:
+          type: array
+          description: An array of Employee objects representing all people who received this feedback (supports Team Recognition).
+          items:
+            $ref: '#/components/schemas/Employee'
+          minItems: 1
+        content:
+          type: string
+          description: The publicly visible content of the feedback.
+          example: Most impressive.
+        created_at:
+          type: string
+          format: date-time
+          description: The ISO 8601 timestamp when the feedback was created and sent.
+          example: '2016-10-31T23:43:20Z'
+      required:
+      - uuid
+      - sender
+      - recipients
+      - content
+      - created_at
+    PaginationLinks:
+      type: object
+      description: Pagination links included when results span multiple pages.
+      properties:
+        self:
+          type: string
+          description: The URL of the current result set.
+          example: /v1/real-time-feedback?created_after=1477877614
+        next:
+          type: string
+          description: The URL of the next page of results.
+          example: /v1/real-time-feedback?created_after=1477877614?page=2
+        last:
+          type: string
+          description: The URL of the last page of results.
+          example: /v1/real-time-feedback?created_after=1477877614?page=5
+      required:
+      - self
+    Employee:
+      type: object
+      description: Represents a user working for a Reflektive company.
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: A unique identifier associated with this employee.
+          example: 04b09952-6b79-454e-8306-9c7f015267b5
+        email:
+          type: string
+          format: email
+          description: The email address of the employee.
+          example: darth.vader@example.com
+        name:
+          type: string
+          description: The employee's full name.
+          example: Darth Vader
+        photo:
+          type: string
+          format: uri
+          nullable: true
+          description: A URL pointing to a photograph of the employee, if available.
+          example: https://www.example.com/darth.vader.jpg
+      required:
+      - uuid
+      - email
+      - name
+    V2FeedbackListResponse:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/V2Feedback'
+      required:
+      - links
+      - data
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token-based authentication. Pass the header as: `Authorization: Token token=<your_api_key>`. Contact support@reflektive.com to obtain an API key.'

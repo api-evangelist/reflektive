@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Tasks API
+  description: The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.
+  version: '2.0'
+  contact:
+    email: support@reflektive.com
+  x-api-id: reflektive:reflektive-api
+  x-audience: external-public
+servers:
+- url: https://api.reflektive.com
+  description: Reflektive Production API
+security:
+- tokenAuth: []
+tags:
+- name: Tasks
+  description: Asynchronous task objects used to track the status of report generation jobs.
+paths:
+  /v1/task/{uuid}:
+    get:
+      operationId: getTask
+      summary: Show task status
+      description: Returns the current status of a given asynchronous task. Tasks are used to monitor the status of report generation jobs. When a report generation completes, the task status updates to "completed" and the metadata field contains a temporary download link (expires after 15 minutes by default).
+      tags:
+      - Tasks
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The UUID of the task to retrieve.
+        schema:
+          type: string
+          format: uuid
+          example: c4ff9ae5-558d-400c-a768-ad132a3e4c6c
+      responses:
+        '200':
+          description: Task object with current status and metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+              examples:
+                pending:
+                  summary: Task pending
+                  value:
+                    data:
+                      uuid: c4ff9ae5-558d-400c-a768-ad132a3e4c6c
+                      status: pending
+                      metadata: {}
+                completed:
+                  summary: Task completed with download link
+                  value:
+                    data:
+                      uuid: c4ff9ae5-558d-400c-a768-ad132a3e4c6c
+                      status: completed
+                      metadata:
+                        link: http://www.some_download_link.com
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: You do not have permission to view the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Task:
+      type: object
+      description: Tracks the status of an asynchronous job such as report generation.
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: A unique identifier for this task.
+          example: c4ff9ae5-558d-400c-a768-ad132a3e4c6c
+        status:
+          type: string
+          description: The current status of the task. One of "pending", "failed", or "completed".
+          enum:
+          - pending
+          - failed
+          - completed
+          example: pending
+        metadata:
+          type: object
+          description: A JSON object containing metadata about the task. For completed report tasks this includes a "link" property with a temporary download URL (expires after 15 minutes by default).
+          additionalProperties: true
+          example:
+            link: http://www.some_download_link.com
+      required:
+      - uuid
+      - status
+      - metadata
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
+    TaskResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Task'
+      required:
+      - data
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token-based authentication. Pass the header as: `Authorization: Token token=<your_api_key>`. Contact support@reflektive.com to obtain an API key.'
