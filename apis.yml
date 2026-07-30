@@ -14,7 +14,20 @@ description: >-
   interactively. Reflektive is now part of PeopleFluent, a learning and talent
   management suite operating under the Learning Technologies Group.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/reflektive.png
 url: https://raw.githubusercontent.com/api-evangelist/reflektive/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -30,44 +43,108 @@ tags:
   - REST API
 
 apis:
-  - aid: reflektive:reflektive-api
-    name: Reflektive API
-    description: >-
-      The Reflektive REST API provides programmatic access to performance
-      management data including real-time feedback, performance reviews, goal
-      management, engagement surveys, and asynchronous report generation.
-      Authentication uses a company-level token passed as an HTTP Authorization
-      header. The API is versioned (v1 and v2), with v2 supporting multi-recipient
-      team recognition in addition to the core v1 resource set.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.api.reflektive.com/
-    baseURL: https://api.reflektive.com
-    tags:
-      - Performance Reviews
-      - Real-Time Feedback
-      - Goal Management
-      - Engagement Surveys
-      - People Analytics
-    properties:
-      - type: Documentation
-        url: https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
-      - type: OpenAPI
-        url: https://docs.api.reflektive.com/
-      - type: OpenAPI
-        url: openapi/reflektive-reflektive-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/employee.json
-      - type: JSONSchema
-        url: json-schema/feedback-v1.json
-      - type: JSONSchema
-        url: json-schema/feedback-v2.json
-      - type: JSONSchema
-        url: json-schema/task.json
-      - type: JSONLDContext
-        url: json-ld/reflektive-context.jsonld
-      - type: Vocabulary
-        url: vocabulary/reflektive-vocabulary.yml
-
+- aid: reflektive:reflektive-real-time-feedback-v1-api
+  name: Reflektive Real-time Feedback (v1) API
+  description: V1 endpoint for real-time peer feedback between a single sender and recipient.
+  humanURL: https://docs.api.reflektive.com/
+  baseURL: https://api.reflektive.com
+  tags:
+  - Real-time Feedback (v1)
+  properties:
+  - type: OpenAPI
+    url: openapi/reflektive-real-time-feedback-v1-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
+  - type: JSONSchema
+    url: json-schema/employee.json
+  - type: JSONSchema
+    url: json-schema/feedback-v1.json
+  - type: JSONSchema
+    url: json-schema/feedback-v2.json
+  - type: JSONSchema
+    url: json-schema/task.json
+  - type: JSONLDContext
+    url: json-ld/reflektive-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/reflektive-vocabulary.yml
+- aid: reflektive:reflektive-real-time-feedback-v2-api
+  name: Reflektive Real-time Feedback (v2) API
+  description: >-
+    V2 endpoint for real-time feedback with support for Team Recognition (multiple recipients).
+  humanURL: https://docs.api.reflektive.com/
+  baseURL: https://api.reflektive.com
+  tags:
+  - Real-time Feedback (v2)
+  properties:
+  - type: OpenAPI
+    url: openapi/reflektive-real-time-feedback-v2-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
+  - type: JSONSchema
+    url: json-schema/employee.json
+  - type: JSONSchema
+    url: json-schema/feedback-v1.json
+  - type: JSONSchema
+    url: json-schema/feedback-v2.json
+  - type: JSONSchema
+    url: json-schema/task.json
+  - type: JSONLDContext
+    url: json-ld/reflektive-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/reflektive-vocabulary.yml
+- aid: reflektive:reflektive-reports-api
+  name: Reflektive Reports API
+  description: >-
+    Report generation endpoints that kick off asynchronous jobs and return a task UUID for status polling.
+  humanURL: https://docs.api.reflektive.com/
+  baseURL: https://api.reflektive.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/reflektive-reports-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
+  - type: JSONSchema
+    url: json-schema/employee.json
+  - type: JSONSchema
+    url: json-schema/feedback-v1.json
+  - type: JSONSchema
+    url: json-schema/feedback-v2.json
+  - type: JSONSchema
+    url: json-schema/task.json
+  - type: JSONLDContext
+    url: json-ld/reflektive-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/reflektive-vocabulary.yml
+- aid: reflektive:reflektive-tasks-api
+  name: Reflektive Tasks API
+  description: Asynchronous task objects used to track the status of report generation jobs.
+  humanURL: https://docs.api.reflektive.com/
+  baseURL: https://api.reflektive.com
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/reflektive-tasks-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://support.reflektive.com/hc/en-us/articles/19691561061267-The-Reflektive-API-Overview
+  - type: JSONSchema
+    url: json-schema/employee.json
+  - type: JSONSchema
+    url: json-schema/feedback-v1.json
+  - type: JSONSchema
+    url: json-schema/feedback-v2.json
+  - type: JSONSchema
+    url: json-schema/task.json
+  - type: JSONLDContext
+    url: json-ld/reflektive-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/reflektive-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/reflektive-agentic-access.yml
