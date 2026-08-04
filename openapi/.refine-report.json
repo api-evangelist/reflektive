@@ -1,0 +1,20 @@
+{
+  "provider": "reflektive",
+  "sources": [
+    "reflektive-real-time-feedback-v1-api-openapi.yml",
+    "reflektive-real-time-feedback-v2-api-openapi.yml",
+    "reflektive-reports-api-openapi.yml",
+    "reflektive-tasks-api-openapi.yml"
+  ],
+  "outputs": [
+    "reflektive-real-time-feedback-v1-api-openapi.yml",
+    "reflektive-real-time-feedback-v2-api-openapi.yml",
+    "reflektive-reports-api-openapi.yml",
+    "reflektive-tasks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
