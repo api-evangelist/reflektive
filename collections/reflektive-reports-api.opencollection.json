@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Reports API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a calibrations report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reflektive.com/v1/reports/reviews",
+            "params": [
+              {
+                "name": "report_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of report to generate."
+              },
+              {
+                "name": "cycle_uuid",
+                "value": "",
+                "type": "query",
+                "description": "The UUID of the review cycle to generate the report for."
+              }
+            ]
+          },
+          "docs": "Kicks off an asynchronous report generation job and returns the UUID of a Task object that can be polled for completion. When the report is ready, the task metadata will contain a temporary download link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Tasks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show task status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.reflektive.com/v1/task/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the task to retrieve."
+              }
+            ]
+          },
+          "docs": "Returns the current status of a given asynchronous task. Tasks are used to monitor the status of report generation jobs. When a report generation completes, the task status updates to \"completed\" and the metadata field contains a temporary download link (expires after 15 minutes by default)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
