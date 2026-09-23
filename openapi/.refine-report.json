@@ -1,10 +1,7 @@
 {
   "provider": "reflektive",
   "sources": [
-    "reflektive-real-time-feedback-v1-api-openapi.yml",
-    "reflektive-real-time-feedback-v2-api-openapi.yml",
-    "reflektive-reports-api-openapi.yml",
-    "reflektive-tasks-api-openapi.yml"
+    "_original/reflektive-reflektive-api-openapi.yml"
   ],
   "outputs": [
     "reflektive-real-time-feedback-v1-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "reflektive-reflektive-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "reflektive-real-time-feedback-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "reflektive-real-time-feedback-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "reflektive-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "reflektive-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

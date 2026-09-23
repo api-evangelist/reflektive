@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Real-time Feedback (v2) API
+  title: Reflektive Real-time Feedback (v2) API
   description: The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.
   version: '2.0'
   contact:
@@ -81,32 +81,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Forbidden:
-      description: You do not have permission to view the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource could not be found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Could not authenticate using the provided API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message.
     V2Feedback:
       type: object
       description: A real-time feedback record (v2) supporting Team Recognition — one sender and one or more recipients.
@@ -139,6 +114,12 @@ components:
       - recipients
       - content
       - created_at
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
     PaginationLinks:
       type: object
       description: Pagination links included when results span multiple pages.
@@ -176,9 +157,10 @@ components:
           description: The employee's full name.
           example: Darth Vader
         photo:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: A URL pointing to a photograph of the employee, if available.
           example: https://www.example.com/darth.vader.jpg
       required:
@@ -197,6 +179,25 @@ components:
       required:
       - links
       - data
+  responses:
+    Unauthorized:
+      description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: You do not have permission to view the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     tokenAuth:
       type: apiKey

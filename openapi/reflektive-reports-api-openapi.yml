@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Reports API
+  title: Reflektive Reports API
   description: The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.
   version: '2.0'
   contact:
@@ -56,6 +56,19 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  responses:
+    Unauthorized:
+      description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: You do not have permission to view the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ReportTaskResponse:
       type: object
@@ -78,19 +91,6 @@ components:
         error:
           type: string
           description: A human-readable error message.
-  responses:
-    Unauthorized:
-      description: Could not authenticate using the provided API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: You do not have permission to view the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     tokenAuth:
       type: apiKey
