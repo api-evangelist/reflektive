@@ -63,8 +63,8 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Could not authenticate using the provided API key.
+    Forbidden:
+      description: You do not have permission to view the requested resource.
       content:
         application/json:
           schema:
@@ -75,8 +75,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: You do not have permission to view the requested resource.
+    Unauthorized:
+      description: Could not authenticate using the provided API key.
       content:
         application/json:
           schema:
