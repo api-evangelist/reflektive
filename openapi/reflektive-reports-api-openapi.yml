@@ -57,6 +57,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
     ReportTaskResponse:
       type: object
       properties:
@@ -72,12 +78,6 @@ components:
           - task_uuid
       required:
       - data
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message.
   responses:
     Forbidden:
       description: You do not have permission to view the requested resource.

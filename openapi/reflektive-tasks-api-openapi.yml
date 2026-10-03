@@ -82,12 +82,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message.
     Task:
       type: object
       description: Tracks the status of an asynchronous job such as report generation.
@@ -122,6 +116,12 @@ components:
           $ref: '#/components/schemas/Task'
       required:
       - data
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
   securitySchemes:
     tokenAuth:
       type: apiKey

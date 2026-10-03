@@ -101,6 +101,18 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    V2FeedbackListResponse:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/V2Feedback'
+      required:
+      - links
+      - data
     PaginationLinks:
       type: object
       description: Pagination links included when results span multiple pages.
@@ -119,6 +131,38 @@ components:
           example: /v1/real-time-feedback?created_after=1477877614?page=5
       required:
       - self
+    V2Feedback:
+      type: object
+      description: A real-time feedback record (v2) supporting Team Recognition — one sender and one or more recipients.
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: A unique identifier associated with this feedback.
+          example: e8678ff9-3ae4-4b2b-b7af-f7240155f753
+        sender:
+          $ref: '#/components/schemas/Employee'
+        recipients:
+          type: array
+          description: An array of Employee objects representing all people who received this feedback (supports Team Recognition).
+          items:
+            $ref: '#/components/schemas/Employee'
+          minItems: 1
+        content:
+          type: string
+          description: The publicly visible content of the feedback.
+          example: Most impressive.
+        created_at:
+          type: string
+          format: date-time
+          description: The ISO 8601 timestamp when the feedback was created and sent.
+          example: '2016-10-31T23:43:20Z'
+      required:
+      - uuid
+      - sender
+      - recipients
+      - content
+      - created_at
     ErrorResponse:
       type: object
       properties:
@@ -154,50 +198,6 @@ components:
       - uuid
       - email
       - name
-    V2Feedback:
-      type: object
-      description: A real-time feedback record (v2) supporting Team Recognition — one sender and one or more recipients.
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: A unique identifier associated with this feedback.
-          example: e8678ff9-3ae4-4b2b-b7af-f7240155f753
-        sender:
-          $ref: '#/components/schemas/Employee'
-        recipients:
-          type: array
-          description: An array of Employee objects representing all people who received this feedback (supports Team Recognition).
-          items:
-            $ref: '#/components/schemas/Employee'
-          minItems: 1
-        content:
-          type: string
-          description: The publicly visible content of the feedback.
-          example: Most impressive.
-        created_at:
-          type: string
-          format: date-time
-          description: The ISO 8601 timestamp when the feedback was created and sent.
-          example: '2016-10-31T23:43:20Z'
-      required:
-      - uuid
-      - sender
-      - recipients
-      - content
-      - created_at
-    V2FeedbackListResponse:
-      type: object
-      properties:
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/V2Feedback'
-      required:
-      - links
-      - data
   securitySchemes:
     tokenAuth:
       type: apiKey
