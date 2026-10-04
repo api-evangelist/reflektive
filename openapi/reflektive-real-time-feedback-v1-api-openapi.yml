@@ -101,42 +101,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    V1FeedbackListResponse:
-      type: object
-      properties:
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1Feedback'
-      required:
-      - links
-      - data
-    PaginationLinks:
-      type: object
-      description: Pagination links included when results span multiple pages.
-      properties:
-        self:
-          type: string
-          description: The URL of the current result set.
-          example: /v1/real-time-feedback?created_after=1477877614
-        next:
-          type: string
-          description: The URL of the next page of results.
-          example: /v1/real-time-feedback?created_after=1477877614?page=2
-        last:
-          type: string
-          description: The URL of the last page of results.
-          example: /v1/real-time-feedback?created_after=1477877614?page=5
-      required:
-      - self
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message.
     Employee:
       type: object
       description: Represents a user working for a Reflektive company.
@@ -194,6 +158,42 @@ components:
       - recipient
       - content
       - created_at
+    V1FeedbackListResponse:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1Feedback'
+      required:
+      - links
+      - data
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
+    PaginationLinks:
+      type: object
+      description: Pagination links included when results span multiple pages.
+      properties:
+        self:
+          type: string
+          description: The URL of the current result set.
+          example: /v1/real-time-feedback?created_after=1477877614
+        next:
+          type: string
+          description: The URL of the next page of results.
+          example: /v1/real-time-feedback?created_after=1477877614?page=2
+        last:
+          type: string
+          description: The URL of the last page of results.
+          example: /v1/real-time-feedback?created_after=1477877614?page=5
+      required:
+      - self
   securitySchemes:
     tokenAuth:
       type: apiKey

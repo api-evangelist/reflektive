@@ -62,26 +62,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Forbidden:
-      description: You do not have permission to view the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource could not be found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Could not authenticate using the provided API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    TaskResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Task'
+      required:
+      - data
     Task:
       type: object
       description: Tracks the status of an asynchronous job such as report generation.
@@ -109,19 +97,31 @@ components:
       - uuid
       - status
       - metadata
-    TaskResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Task'
-      required:
-      - data
     ErrorResponse:
       type: object
       properties:
         error:
           type: string
           description: A human-readable error message.
+  responses:
+    Forbidden:
+      description: You do not have permission to view the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource could not be found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     tokenAuth:
       type: apiKey
