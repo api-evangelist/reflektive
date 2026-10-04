@@ -170,6 +170,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/reflektive-vocabulary.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/reflektive-capability-edges.yml
+    name: Reflektive Business Capability Map
   - type: AgenticAccess
     url: agentic-access/reflektive-agentic-access.yml
   - type: TrustCenter
