@@ -82,47 +82,24 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    V2FeedbackListResponse:
+    PaginationLinks:
       type: object
+      description: Pagination links included when results span multiple pages.
       properties:
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/V2Feedback'
+        self:
+          type: string
+          description: The URL of the current result set.
+          example: /v1/real-time-feedback?created_after=1477877614
+        next:
+          type: string
+          description: The URL of the next page of results.
+          example: /v1/real-time-feedback?created_after=1477877614?page=2
+        last:
+          type: string
+          description: The URL of the last page of results.
+          example: /v1/real-time-feedback?created_after=1477877614?page=5
       required:
-      - links
-      - data
-    Employee:
-      type: object
-      description: Represents a user working for a Reflektive company.
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: A unique identifier associated with this employee.
-          example: 04b09952-6b79-454e-8306-9c7f015267b5
-        email:
-          type: string
-          format: email
-          description: The email address of the employee.
-          example: darth.vader@example.com
-        name:
-          type: string
-          description: The employee's full name.
-          example: Darth Vader
-        photo:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: A URL pointing to a photograph of the employee, if available.
-          example: https://www.example.com/darth.vader.jpg
-      required:
-      - uuid
-      - email
-      - name
+      - self
     V2Feedback:
       type: object
       description: A real-time feedback record (v2) supporting Team Recognition — one sender and one or more recipients.
@@ -155,37 +132,54 @@ components:
       - recipients
       - content
       - created_at
+    V2FeedbackListResponse:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/V2Feedback'
+      required:
+      - links
+      - data
     ErrorResponse:
       type: object
       properties:
         error:
           type: string
           description: A human-readable error message.
-    PaginationLinks:
+    Employee:
       type: object
-      description: Pagination links included when results span multiple pages.
+      description: Represents a user working for a Reflektive company.
       properties:
-        self:
+        uuid:
           type: string
-          description: The URL of the current result set.
-          example: /v1/real-time-feedback?created_after=1477877614
-        next:
+          format: uuid
+          description: A unique identifier associated with this employee.
+          example: 04b09952-6b79-454e-8306-9c7f015267b5
+        email:
           type: string
-          description: The URL of the next page of results.
-          example: /v1/real-time-feedback?created_after=1477877614?page=2
-        last:
+          format: email
+          description: The email address of the employee.
+          example: darth.vader@example.com
+        name:
           type: string
-          description: The URL of the last page of results.
-          example: /v1/real-time-feedback?created_after=1477877614?page=5
+          description: The employee's full name.
+          example: Darth Vader
+        photo:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: A URL pointing to a photograph of the employee, if available.
+          example: https://www.example.com/darth.vader.jpg
       required:
-      - self
+      - uuid
+      - email
+      - name
   responses:
-    Forbidden:
-      description: You do not have permission to view the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Resource could not be found.
       content:
@@ -194,6 +188,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: You do not have permission to view the requested resource.
       content:
         application/json:
           schema:

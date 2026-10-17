@@ -70,6 +70,12 @@ components:
           $ref: '#/components/schemas/Task'
       required:
       - data
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A human-readable error message.
     Task:
       type: object
       description: Tracks the status of an asynchronous job such as report generation.
@@ -97,19 +103,7 @@ components:
       - uuid
       - status
       - metadata
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A human-readable error message.
   responses:
-    Forbidden:
-      description: You do not have permission to view the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Resource could not be found.
       content:
@@ -118,6 +112,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Could not authenticate using the provided API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: You do not have permission to view the requested resource.
       content:
         application/json:
           schema:
