@@ -170,6 +170,8 @@ apis:
   - type: Vocabulary
     url: vocabulary/reflektive-vocabulary.yml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/reflektive/overview
   - type: CapabilityMap
     url: capabilities/reflektive-capability-edges.yml
     name: Reflektive Business Capability Map
