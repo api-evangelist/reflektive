@@ -1,280 +1,278 @@
 {
+  "info": {
+    "_postman_id": "da7cd63c-df9c-4344-864f-93d30b91fd30",
+    "name": "Reflektive Tasks API",
+    "description": "The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.\n\nContact Support:\n Email: support@reflektive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:05:59.000Z",
+    "updatedAt": "2026-10-21T20:05:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-da7cd63c-df9c-4344-864f-93d30b91fd30"
+  },
   "item": [
     {
-      "id": "8ea076cd-9893-4bec-bd13-6369c7e6ff77",
-      "name": "Tasks",
-      "description": {
-        "content": "Asynchronous task objects used to track the status of report generation jobs.",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "868ae8f4-dd75-4213-90f2-d6324d37d3bd",
-          "name": "Show task status",
-          "request": {
-            "name": "Show task status",
-            "description": {
-              "content": "Returns the current status of a given asynchronous task. Tasks are used to monitor the status of report generation jobs. When a report generation completes, the task status updates to \"completed\" and the metadata field contains a temporary download link (expires after 15 minutes by default).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "task",
-                ":uuid"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "uuid",
-                  "description": "(Required) The UUID of the task to retrieve."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "task",
+          "item": [
             {
-              "id": "24e737d3-d0bd-4343-b73d-40593f045528",
-              "name": "Task object with current status and metadata.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "task",
-                    ":uuid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "uuid",
-                      "description": "(Required) The UUID of the task to retrieve."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{uuid}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Show task status",
+                  "id": "bd1caee6-b5ac-4cf0-9398-6602026babd7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/task/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "task",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "01a4928b-76b3-4680-b20c-94f613122deb",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) The UUID of the task to retrieve."
+                        }
+                      ]
+                    },
+                    "description": "Returns the current status of a given asynchronous task. Tasks are used to monitor the status of report generation jobs. When a report generation completes, the task status updates to \"completed\" and the metadata field contains a temporary download link (expires after 15 minutes by default)."
+                  },
+                  "response": [
+                    {
+                      "id": "6189a900-4089-4f98-b9af-506599c74994",
+                      "name": "Task object with current status and metadata.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/task/:uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "task",
+                            ":uuid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"uuid\": \"<uuid>\",\n    \"status\": \"failed\",\n    \"metadata\": {\n      \"veniam_bc\": 5498850,\n      \"ullamco_20\": false\n    }\n  }\n}",
+                      "createdAt": "2026-10-21T20:06:00.000Z",
+                      "updatedAt": "2026-10-21T20:06:00.000Z",
+                      "uid": "35240-6189a900-4089-4f98-b9af-506599c74994"
+                    },
+                    {
+                      "id": "7e276024-d491-4d20-924d-297ea55f0641",
+                      "name": "Could not authenticate using the provided API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/task/:uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "task",
+                            ":uuid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:06:00.000Z",
+                      "updatedAt": "2026-10-21T20:06:00.000Z",
+                      "uid": "35240-7e276024-d491-4d20-924d-297ea55f0641"
+                    },
+                    {
+                      "id": "e92e6598-4d3c-4f9d-8313-92babc6ebd9f",
+                      "name": "You do not have permission to view the requested resource.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/task/:uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "task",
+                            ":uuid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:06:00.000Z",
+                      "updatedAt": "2026-10-21T20:06:00.000Z",
+                      "uid": "35240-e92e6598-4d3c-4f9d-8313-92babc6ebd9f"
+                    },
+                    {
+                      "id": "4adfecfd-b4a1-4b45-9501-2d17d6f184bf",
+                      "name": "Resource could not be found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/task/:uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "task",
+                            ":uuid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:06:00.000Z",
+                      "updatedAt": "2026-10-21T20:06:00.000Z",
+                      "uid": "35240-4adfecfd-b4a1-4b45-9501-2d17d6f184bf"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:06:00.000Z",
+                  "updatedAt": "2026-10-21T20:06:00.000Z",
+                  "uid": "35240-bd1caee6-b5ac-4cf0-9398-6602026babd7"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"uuid\": \"c4ff9ae5-558d-400c-a768-ad132a3e4c6c\",\n    \"status\": \"pending\",\n    \"metadata\": {}\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f30ecbb1-7a0a-4d5f-8416-74a84e6b0aa2",
-              "name": "Could not authenticate using the provided API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "task",
-                    ":uuid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "uuid",
-                      "description": "(Required) The UUID of the task to retrieve."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2f53ecd7-9fab-4f1b-a5e5-e546987961da",
-              "name": "You do not have permission to view the requested resource.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "task",
-                    ":uuid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "uuid",
-                      "description": "(Required) The UUID of the task to retrieve."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2541cfcb-12df-433e-8c14-64a4ba2b9873",
-              "name": "Resource could not be found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "task",
-                    ":uuid"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "uuid",
-                      "description": "(Required) The UUID of the task to retrieve."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "191a74dc-65f9-45a5-96b6-612e3fba3edb",
+              "createdAt": "2026-10-21T20:06:00.000Z",
+              "updatedAt": "2026-10-21T20:06:00.000Z",
+              "uid": "35240-191a74dc-65f9-45a5-96b6-612e3fba3edb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "524a1c09-ea6d-4259-a8c1-a0030cd80fb0",
+          "createdAt": "2026-10-21T20:06:00.000Z",
+          "updatedAt": "2026-10-21T20:06:00.000Z",
+          "uid": "35240-524a1c09-ea6d-4259-a8c1-a0030cd80fb0"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.reflektive.com",
-      "key": "baseUrl"
+      "id": "b5797e6e-0bfb-4351-8180-b881c53c4264",
+      "createdAt": "2026-10-21T20:06:00.000Z",
+      "updatedAt": "2026-10-21T20:06:00.000Z",
+      "uid": "35240-b5797e6e-0bfb-4351-8180-b881c53c4264"
     }
   ],
   "auth": {
@@ -282,25 +280,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "4b874a1d-7cba-49c9-9ab7-f4946bc19095",
-    "name": "Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Tasks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.\n\nContact Support:\n Email: support@reflektive.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.reflektive.com"
     }
-  }
+  ]
 }

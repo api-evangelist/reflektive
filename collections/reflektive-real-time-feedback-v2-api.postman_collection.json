@@ -1,306 +1,321 @@
 {
+  "info": {
+    "_postman_id": "33fe534d-b2c2-4f0a-8360-d673a557e55d",
+    "name": "Reflektive Real-time Feedback (v2) API",
+    "description": "The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.\n\nContact Support:\n Email: support@reflektive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:05:47.000Z",
+    "updatedAt": "2026-10-21T20:05:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-33fe534d-b2c2-4f0a-8360-d673a557e55d"
+  },
   "item": [
     {
-      "id": "c76fdf42-a55e-44b3-9c6e-6e5a2051f767",
-      "name": "Real-time Feedback (v2)",
-      "description": {
-        "content": "V2 endpoint for real-time feedback with support for Team Recognition (multiple recipients).",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "89e8424a-a7c2-41c3-ba9c-7bc96bc99a7e",
-          "name": "List real-time feedback (v2)",
-          "request": {
-            "name": "List real-time feedback (v2)",
-            "description": {
-              "content": "Returns a paginated list of all public, positive real-time feedback records using the v2 schema. The v2 endpoint adds support for Team Recognition — feedback sent to multiple recipients simultaneously. By default 200 results are returned per query.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "real-time-feedback"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "created_before",
-                  "value": "<long>",
-                  "description": "A UNIX timestamp representing the oldest time a feedback was created. Defaults to the time the request was issued."
-                },
-                {
-                  "disabled": false,
-                  "key": "created_after",
-                  "value": "<long>",
-                  "description": "A UNIX timestamp representing the most recent time a feedback was created. Defaults to 1 day prior to the time the request was issued."
-                },
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1",
-                  "description": "An offset for the feedback results. The endpoint returns 200 results per query."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "real-time-feedback",
+          "item": [
             {
-              "id": "948afebf-34ac-42c7-b2d1-d6610f59d00b",
-              "name": "Paginated list of real-time feedback records (v2, multi-recipient).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "real-time-feedback"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "created_before",
-                      "value": "1477877614"
-                    },
-                    {
-                      "key": "created_after",
-                      "value": "1477877614"
-                    },
-                    {
-                      "key": "page",
-                      "value": "1"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "List real-time feedback (v2)",
+              "id": "032c1df0-194f-4d35-b357-20f8a9b465f9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"links\": {\n    \"self\": \"/v2/real-time-feedback?created_after=1477877614\",\n    \"next\": \"/v2/real-time-feedback?created_after=1477877614?page=2\",\n    \"last\": \"/v2/real-time-feedback?created_after=1477877614?page=5\"\n  },\n  \"data\": [\n    {\n      \"uuid\": \"e8678ff9-3ae4-4b2b-b7af-f7240155f753\",\n      \"sender\": {\n        \"uuid\": \"04b09952-6b79-454e-8306-9c7f015267b5\",\n        \"email\": \"darth.vader@example.com\",\n        \"name\": \"Darth Vader\",\n        \"photo\": \"https://www.example.com/darth.vader.jpg\"\n      },\n      \"recipients\": [\n        {\n          \"uuid\": \"addd9666-788a-4eb6-82a2-225a7600e4c9\",\n          \"email\": \"luke.skywalker@example.com\",\n          \"name\": \"Luke Skywalker\",\n          \"photo\": \"https://www.example.com/luke.skywalker.jpg\"\n        }\n      ],\n      \"content\": \"Most impressive.\",\n      \"created_at\": \"2016-10-31T23:43:20Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "28ebee68-0b9e-4744-bb41-c9a2babee48b",
-              "name": "Could not authenticate using the provided API key.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v2/real-time-feedback?created_before=<long>&created_after=<long>&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v2",
                     "real-time-feedback"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "A UNIX timestamp representing the oldest time a feedback was created. Defaults to the time the request was issued.",
                       "key": "created_before",
-                      "value": "1477877614"
+                      "value": "<long>"
                     },
                     {
+                      "description": "A UNIX timestamp representing the most recent time a feedback was created. Defaults to 1 day prior to the time the request was issued.",
                       "key": "created_after",
-                      "value": "1477877614"
+                      "value": "<long>"
                     },
                     {
+                      "description": "An offset for the feedback results. The endpoint returns 200 results per query.",
                       "key": "page",
                       "value": "1"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns a paginated list of all public, positive real-time feedback records using the v2 schema. The v2 endpoint adds support for Team Recognition \u2014 feedback sent to multiple recipients simultaneously. By default 200 results are returned per query."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "43cbe57c-de51-4429-a6d9-8f5da0678b1b",
-              "name": "You do not have permission to view the requested resource.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "real-time-feedback"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "4dce6117-cd3b-429a-8c0b-d25f96ef1a98",
+                  "name": "Paginated list of real-time feedback records (v2, multi-recipient).",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/real-time-feedback?created_before=<long>&created_after=<long>&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "real-time-feedback"
+                      ],
+                      "query": [
+                        {
+                          "description": "A UNIX timestamp representing the oldest time a feedback was created. Defaults to the time the request was issued.",
+                          "key": "created_before",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "A UNIX timestamp representing the most recent time a feedback was created. Defaults to 1 day prior to the time the request was issued.",
+                          "key": "created_after",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "An offset for the feedback results. The endpoint returns 200 results per query.",
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "created_before",
-                      "value": "1477877614"
-                    },
-                    {
-                      "key": "created_after",
-                      "value": "1477877614"
-                    },
-                    {
-                      "key": "page",
-                      "value": "1"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"links\": {\n    \"self\": \"<string>\",\n    \"next\": \"<string>\",\n    \"last\": \"<string>\"\n  },\n  \"data\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"sender\": {\n        \"uuid\": \"<uuid>\",\n        \"email\": \"<email>\",\n        \"name\": \"<string>\",\n        \"photo\": \"<string,null-uri>\"\n      },\n      \"recipients\": [\n        {\n          \"uuid\": \"<uuid>\",\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"photo\": \"<string,null-uri>\"\n        }\n      ],\n      \"content\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"sender\": {\n        \"uuid\": \"<uuid>\",\n        \"email\": \"<email>\",\n        \"name\": \"<string>\",\n        \"photo\": \"<string,null-uri>\"\n      },\n      \"recipients\": [\n        {\n          \"uuid\": \"<uuid>\",\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"photo\": \"<string,null-uri>\"\n        }\n      ],\n      \"content\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:05:48.000Z",
+                  "updatedAt": "2026-10-21T20:05:48.000Z",
+                  "uid": "35240-4dce6117-cd3b-429a-8c0b-d25f96ef1a98"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ec987e65-de8f-47d9-b083-bc16f0951ecb",
-              "name": "Resource could not be found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "real-time-feedback"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "bb9d6c2c-ff32-4b94-b542-95af4e4a6806",
+                  "name": "Could not authenticate using the provided API key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/real-time-feedback?created_before=<long>&created_after=<long>&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "real-time-feedback"
+                      ],
+                      "query": [
+                        {
+                          "description": "A UNIX timestamp representing the oldest time a feedback was created. Defaults to the time the request was issued.",
+                          "key": "created_before",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "A UNIX timestamp representing the most recent time a feedback was created. Defaults to 1 day prior to the time the request was issued.",
+                          "key": "created_after",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "An offset for the feedback results. The endpoint returns 200 results per query.",
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "created_before",
-                      "value": "1477877614"
-                    },
-                    {
-                      "key": "created_after",
-                      "value": "1477877614"
-                    },
-                    {
-                      "key": "page",
-                      "value": "1"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:05:48.000Z",
+                  "updatedAt": "2026-10-21T20:05:48.000Z",
+                  "uid": "35240-bb9d6c2c-ff32-4b94-b542-95af4e4a6806"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "4b1a4b94-f105-492a-87c7-5340c6c96908",
+                  "name": "You do not have permission to view the requested resource.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/real-time-feedback?created_before=<long>&created_after=<long>&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "real-time-feedback"
+                      ],
+                      "query": [
+                        {
+                          "description": "A UNIX timestamp representing the oldest time a feedback was created. Defaults to the time the request was issued.",
+                          "key": "created_before",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "A UNIX timestamp representing the most recent time a feedback was created. Defaults to 1 day prior to the time the request was issued.",
+                          "key": "created_after",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "An offset for the feedback results. The endpoint returns 200 results per query.",
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:05:48.000Z",
+                  "updatedAt": "2026-10-21T20:05:48.000Z",
+                  "uid": "35240-4b1a4b94-f105-492a-87c7-5340c6c96908"
+                },
+                {
+                  "id": "b7d2b051-b59d-4c94-870c-36a2daaf8fd2",
+                  "name": "Resource could not be found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/real-time-feedback?created_before=<long>&created_after=<long>&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "real-time-feedback"
+                      ],
+                      "query": [
+                        {
+                          "description": "A UNIX timestamp representing the oldest time a feedback was created. Defaults to the time the request was issued.",
+                          "key": "created_before",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "A UNIX timestamp representing the most recent time a feedback was created. Defaults to 1 day prior to the time the request was issued.",
+                          "key": "created_after",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "An offset for the feedback results. The endpoint returns 200 results per query.",
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:05:48.000Z",
+                  "updatedAt": "2026-10-21T20:05:48.000Z",
+                  "uid": "35240-b7d2b051-b59d-4c94-870c-36a2daaf8fd2"
                 }
               ],
-              "body": "{\n  \"error\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:05:48.000Z",
+              "updatedAt": "2026-10-21T20:05:48.000Z",
+              "uid": "35240-032c1df0-194f-4d35-b357-20f8a9b465f9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "3bd3d94f-fb7b-4680-8875-b4e988564ec1",
+          "createdAt": "2026-10-21T20:05:48.000Z",
+          "updatedAt": "2026-10-21T20:05:48.000Z",
+          "uid": "35240-3bd3d94f-fb7b-4680-8875-b4e988564ec1"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.reflektive.com",
-      "key": "baseUrl"
+      "id": "9504c8aa-c0db-4e37-9770-0d6b0fde2ba8",
+      "createdAt": "2026-10-21T20:05:48.000Z",
+      "updatedAt": "2026-10-21T20:05:48.000Z",
+      "uid": "35240-9504c8aa-c0db-4e37-9770-0d6b0fde2ba8"
     }
   ],
   "auth": {
@@ -308,25 +323,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "Authorization"
+        "value": "Authorization",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "1aaab289-e434-494a-9570-c4d20ece2c49",
-    "name": "Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Real-time Feedback (v2) API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Reflektive REST API provides programmatic access to performance management data including real-time feedback, performance reviews, goal management, engagement surveys, and asynchronous report generation. Authentication uses a company-level token passed as an HTTP Authorization header. The API is versioned (v1 and v2), with v2 supporting multi-recipient team recognition in addition to the core v1 resource set.\n\nContact Support:\n Email: support@reflektive.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.reflektive.com"
     }
-  }
+  ]
 }
