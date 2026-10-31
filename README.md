@@ -1,4 +1,4 @@
-# Reflektive (reflektive)
+# Reflektive
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,52 +64,162 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Reflektive is a cloud-based performance management platform that enables organizations to scale constructive, ongoing conversations across their workforce. The platform provides a REST API for managing performance reviews, real-time feedback, goal tracking, and engagement survey data, allowing engineering teams to integrate Reflektive data into their own systems and workflows. The API supports GET, POST, PATCH, and DELETE operations against company data using token-based authentication, with versioned endpoints covering real-time feedback, tasks, reports, goals, and review cycles. Reflektive is now part of PeopleFluent, a learning and talent management suite under Learning Technologies Group, and serves more than 5 million users globally.
+Reflektive is a cloud-based performance management platform that enables organizations to scale constructive, ongoing conversations across their workforce. The platform provides a REST API for managing performance reviews, real-time feedback, goal tracking, and engagement survey data, allowing engineering teams to integrate Reflektive data into their own systems and workflows. The API supports GET, POST, PATCH, and DELETE operations against company data using token-based authentication, with versioned endpoints covering real-time feedback, tasks, reports, goals, and review cycles. Hosted API reference documentation is available via SwaggerHub and a dedicated developer portal, enabling developers to explore and test endpoints interactively. Reflektive is now part of PeopleFluent, a learning and talent management suite operating under the Learning Technologies Group.
 
-- **APIs.json**: https://raw.githubusercontent.com/api-evangelist/reflektive/refs/heads/main/apis.yml
-- **Naftiko**: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=reflektive-api-evangelist&utm_content=repo
+**Areas:** Performance Management · Human Resources · Employee Feedback · Goal Tracking · Engagement Surveys · Reviews · People Analytics · REST API
 
-## Tags
+## Reflektive on APIs.io
 
-Performance Management, HR, Employee Feedback, Goal Tracking, Engagement Surveys, Reviews, People Analytics, REST API
+Everything profiled for Reflektive is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/reflektive/](https://apis.io/providers/reflektive/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (4)
 
-| Name | Description |
-|------|-------------|
-| Reflektive API | REST API providing access to performance reviews, real-time feedback, goal management, engagement surveys, asynchronous report generation, and task status monitoring. |
+- [Reflektive Real-time Feedback (v1) API](https://apis.io/apis/reflektive/reflektive-real-time-feedback-v1-api/) — V1 endpoint for real-time peer feedback between a single sender and recipient.
+- [Reflektive Real-time Feedback (v2) API](https://apis.io/apis/reflektive/reflektive-real-time-feedback-v2-api/) — V2 endpoint for real-time feedback with support for Team Recognition (multiple recipients).
+- [Reflektive Reports API](https://apis.io/apis/reflektive/reflektive-reports-api/) — Report generation endpoints that kick off asynchronous jobs and return a task UUID for status polling.
+- [Reflektive Tasks API](https://apis.io/apis/reflektive/reflektive-tasks-api/) — Asynchronous task objects used to track the status of report generation jobs.
 
-## Plans, Rate Limits, and FinOps
+### Published properties
 
-| Resource | Path |
-|----------|------|
-| Plans & Pricing | [plans/reflektive-plans-pricing.yml](plans/reflektive-plans-pricing.yml) |
-| Rate Limits | [rate-limits/reflektive-rate-limits.yml](rate-limits/reflektive-rate-limits.yml) |
-| FinOps | [finops/reflektive-finops.yml](finops/reflektive-finops.yml) |
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-| Field | Value |
-|-------|-------|
-| Created | 2026-06-13 |
-| Modified | 2026-06-13 |
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Common
+- [Reflektive Agentic Access](https://apis.io/agentic-access/reflektive/reflektive-agentic-access/)
 
-| Type | URL |
-|------|-----|
-| Website | https://www.reflektive.com/ |
-| Documentation | https://support.reflektive.com/hc/en-us/articles/19691532062483-Technical-API-Documentation |
-| API Reference | https://docs.api.reflektive.com/ |
-| GitHub Org | https://github.com/reflektive |
-| LinkedIn | https://www.linkedin.com/company/reflektive |
-| Blog | https://www.peoplefluent.com/blog/ |
-| Pricing | https://www.capterra.com/p/158192/Reflektive/ |
-| Status Page | https://support.reflektive.com/ |
-| X | https://x.com/reflektive |
+#### JSON Schema (4)
 
-## Maintainers
+The data models the API reads and writes.
 
-| Name | Email |
-|------|-------|
-| Kin Lane | kin@apievangelist.com |
+- [Employee](https://apis.io/schemas/reflektive/employee/)
+- [Real-time Feedback (v1)](https://apis.io/schemas/reflektive/feedback-v1/)
+- [Real-time Feedback (v2)](https://apis.io/schemas/reflektive/feedback-v2/)
+- [Task](https://apis.io/schemas/reflektive/task/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Reflektive Context](https://apis.io/jsonld/reflektive/reflektive-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Reflektive Vocabulary](https://apis.io/vocabularies/reflektive/reflektive-vocabulary/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Report Generation Response](https://apis.io/examples/reflektive/report-generation-response/)
+- [Task Completed](https://apis.io/examples/reflektive/task-completed/)
+- [Task Pending](https://apis.io/examples/reflektive/task-pending/)
+- [V1 Real Time Feedback List](https://apis.io/examples/reflektive/v1-real-time-feedback-list/)
+- [V2 Real Time Feedback List](https://apis.io/examples/reflektive/v2-real-time-feedback-list/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Real-time Feedback (v1) API](https://apis.io/collections/reflektive/open-reflektive-real-time-feedback-v1-api/)
+- [Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Real-time Feedback (v2) API](https://apis.io/collections/reflektive/open-reflektive-real-time-feedback-v2-api/)
+- [Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Reports API](https://apis.io/collections/reflektive/open-reflektive-reports-api/)
+- [Reflektive Real-time Feedback (v1) Real-time Feedback (v1) Tasks API](https://apis.io/collections/reflektive/open-reflektive-tasks-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Reflektive — jsonschema rules](https://apis.io/rules/reflektive/reflektive-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Reflektive Authentication](https://apis.io/security/reflektive/reflektive-authentication/)
+- [Reflektive Domain Security](https://apis.io/security/reflektive/reflektive-domain-security/)
+- [Reflektive Trust Center](https://apis.io/security/reflektive/reflektive-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Reflektive Plans Pricing](https://apis.io/plans/reflektive/reflektive-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Reflektive Rate Limits](https://apis.io/rate-limits/reflektive/reflektive-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Reflektive Finops](https://apis.io/finops/reflektive/reflektive-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.reflektive.com/)
+- [Documentation](https://support.reflektive.com/hc/en-us/articles/19691532062483-Technical-API-Documentation)
+- [Pricing](https://www.capterra.com/p/158192/Reflektive/)
+- [Blog](https://www.peoplefluent.com/blog/)
+- [Status](https://support.reflektive.com/)
+
+## API Evangelist rating
+
+**Kin Score 39.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 67.2 |
+| Contract governance | 23.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 23.7 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/reflektive/](https://apis.io/providers/reflektive/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Reflektive: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/reflektive/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
